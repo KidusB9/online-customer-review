@@ -1,0 +1,34 @@
+class Review:
+    def __init__(self, username, rating, review_text):
+        self.username = username
+        self.rating = rating
+        self.review_text = review_text
+
+    def __str__(self):
+        return f"{self.username} gave a {self.rating} star rating and said: {self.review_text}"
+
+class Product:
+    def __init__(self, name):
+        self.name = name
+        self.reviews = []
+
+    def add_review(self, review):
+        self.reviews.append(review)
+
+    def get_avg_rating(self):
+        total_rating = 0
+        for review in self.reviews:
+            total_rating += review.rating
+        return total_rating / len(self.reviews)
+
+    def __str__(self):
+        return f"{self.name} has an average rating of {self.get_avg_rating()}"
+
+# Create a product and add some reviews
+product = Product("Laptop")
+product.add_review(Review("Alice", 5, "I love this laptop!"))
+product.add_review(Review("Bob", 4, "It's a good laptop but could be better."))
+product.add_review(Review("Charlie", 3, "It's just okay."))
+
+# Print the average rating for the product
+print(product)
